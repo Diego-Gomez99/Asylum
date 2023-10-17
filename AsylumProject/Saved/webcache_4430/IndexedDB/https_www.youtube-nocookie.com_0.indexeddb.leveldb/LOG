@@ -1,0 +1,8 @@
+2023/10/14-17:35:09.672 410c Reusing MANIFEST D:/Proyectos Unreal/Asylum/AsylumProject/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/10/14-17:35:09.683 410c Recovering log #10
+2023/10/14-17:35:09.684 410c Reusing old log D:/Proyectos Unreal/Asylum/AsylumProject/Saved/webcache_4430\IndexedDB\https_www.youtube-nocookie.com_0.indexeddb.leveldb/000010.log 
+2023/10/14-17:42:11.740 330c Level-0 table #14: started
+2023/10/14-17:42:11.740 330c Level-0 table #14: 0 bytes OK
+2023/10/14-17:42:11.775 330c Delete type=0 #10
+2023/10/14-17:42:11.776 330c Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2023/10/14-17:42:11.776 330c Manual compaction at level-1 from (begin) .. (end); will stop at (end)
