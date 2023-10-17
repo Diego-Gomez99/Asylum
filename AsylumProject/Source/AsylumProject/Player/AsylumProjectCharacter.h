@@ -49,6 +49,8 @@ class AAsylumProjectCharacter : public ACharacter
 	UPROPERTY(EditAnywhere)
 	UAudioComponent* KeysSoundComponent;
 
+	APlayerController* Myplayercontroller;
+
 	
 public:
 	AAsylumProjectCharacter();
@@ -83,6 +85,7 @@ protected:
 
 	void PlayerInteraction();
 
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
@@ -93,6 +96,9 @@ public:
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+
+	UFUNCTION(BlueprintCallable)
+	void HeadBob(float VectorLenght);
 
 	UPROPERTY(BlueprintReadWrite)
 	bool HasKey = false;
@@ -110,6 +116,12 @@ private:
 
 	/*Door Class*/
 	AMyDoor* MyDoorRef;
+
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UCameraShakeBase> CamShakeIdle;	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UCameraShakeBase> CamShakeWalk;
 
 };
 

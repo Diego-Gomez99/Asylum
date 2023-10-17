@@ -1,12 +1,12 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "d:\\proyectos unreal\\asylum\\asylumproject\\intermediate\\build\\win64\\unrealeditor\\inc\\asylumproject\\uht\\mydoor.gen.cpp",
+        "Source": "d:\\proyectos unreal\\asylum\\asylum\\asylumproject\\intermediate\\build\\win64\\unrealeditor\\inc\\asylumproject\\uht\\mydoor.gen.cpp",
         "ProvidedModule": "",
-        "PCH": "d:\\proyectos unreal\\asylum\\asylumproject\\intermediate\\build\\win64\\x64\\asylumprojecteditor\\development\\engine\\sharedpch.engine.shadowerrors.inclorderunreal5_1.h.pch",
+        "PCH": "d:\\proyectos unreal\\asylum\\asylum\\asylumproject\\intermediate\\build\\win64\\x64\\asylumprojecteditor\\development\\engine\\sharedpch.engine.shadowerrors.inclorderunreal5_1.h.pch",
         "Includes": [
-            "d:\\proyectos unreal\\asylum\\asylumproject\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\asylumproject\\definitions.asylumproject.h",
-            "d:\\proyectos unreal\\asylum\\asylumproject\\source\\asylumproject\\actors\\mydoor.h",
+            "d:\\proyectos unreal\\asylum\\asylum\\asylumproject\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\asylumproject\\definitions.asylumproject.h",
+            "d:\\proyectos unreal\\asylum\\asylum\\asylumproject\\source\\asylumproject\\actors\\mydoor.h",
             "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\components\\boxcomponent.h",
             "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
             "d:\\unrealeditor\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
@@ -27,7 +27,7 @@
             "d:\\unrealeditor\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\audiomixer\\uht\\audiomixerclockhandle.generated.h",
             "d:\\unrealeditor\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\audiocomponent.generated.h",
             "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\core\\public\\misc\\outputdevicenull.h",
-            "d:\\proyectos unreal\\asylum\\asylumproject\\intermediate\\build\\win64\\unrealeditor\\inc\\asylumproject\\uht\\mydoor.generated.h"
+            "d:\\proyectos unreal\\asylum\\asylum\\asylumproject\\intermediate\\build\\win64\\unrealeditor\\inc\\asylumproject\\uht\\mydoor.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

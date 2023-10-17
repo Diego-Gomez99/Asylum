@@ -290,10 +290,7 @@
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared"
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um"
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt"
-/FI"D:\Proyectos Unreal\Asylum\AsylumProject\Intermediate\Build\Win64\x64\AsylumProjectEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.InclOrderUnreal5_1.h"
-/FI"D:\Proyectos Unreal\Asylum\AsylumProject\Intermediate\Build\Win64\x64\UnrealEditor\Development\AsylumProject\Definitions.AsylumProject.h"
-/Yu"D:\Proyectos Unreal\Asylum\AsylumProject\Intermediate\Build\Win64\x64\AsylumProjectEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.InclOrderUnreal5_1.h"
-/Fp"D:\Proyectos Unreal\Asylum\AsylumProject\Intermediate\Build\Win64\x64\AsylumProjectEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.InclOrderUnreal5_1.h.pch"
+/FI"D:\Proyectos Unreal\Asylum\AsylumProject\Intermediate\Build\Win64\x64\UnrealEditor\Development\AsylumProject\Definitions.h"
 /Fo"D:\Proyectos Unreal\Asylum\AsylumProject\Intermediate\Build\Win64\x64\UnrealEditor\Development\AsylumProject\MyDoor.cpp.obj"
 /sourceDependencies "D:\Proyectos Unreal\Asylum\AsylumProject\Intermediate\Build\Win64\x64\UnrealEditor\Development\AsylumProject\MyDoor.cpp.dep.json"
 /Zc:inline

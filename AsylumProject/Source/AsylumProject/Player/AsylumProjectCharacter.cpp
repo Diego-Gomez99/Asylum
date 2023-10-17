@@ -42,7 +42,7 @@ AAsylumProjectCharacter::AAsylumProjectCharacter()
 
 	//DoorRef
 	MyDoorRef = Cast<AMyDoor>(UGameplayStatics::GetActorOfClass(GetWorld(), AMyDoor::StaticClass()));
-	
+
 }
 
 
@@ -51,6 +51,8 @@ void AAsylumProjectCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+
+	Myplayercontroller = Cast<APlayerController>(GetController());
 
 	KeysSoundComponent = FindComponentByClass<UAudioComponent>();
 
@@ -79,6 +81,8 @@ void AAsylumProjectCharacter::SetupPlayerInputComponent(class UInputComponent* P
 
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AAsylumProjectCharacter::Look);
+
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::None, this, &AAsylumProjectCharacter::Move);
 	}
 
 	InputComponent->BindAction(TEXT("InteractionAction"), IE_Pressed, this, &AAsylumProjectCharacter::PlayerInteraction);
@@ -104,7 +108,10 @@ void AAsylumProjectCharacter::Move(const FInputActionValue& Value)
 		{
 			this->CallFunctionByNameWithArguments(TEXT("WalkingEvent false"), ar, NULL, true);
 		}
+		HeadBob(GetVelocity().Size());
+		
 	} 
+	
 }
 
 void AAsylumProjectCharacter::Look(const FInputActionValue& Value)
@@ -139,6 +146,20 @@ void AAsylumProjectCharacter::PlayerInteraction()
 		{	
 			MyDoorRef->CallFunctionByNameWithArguments(TEXT("ChangeDoorIcon false"), ar, NULL, true);
 		}
+	}
+
+}
+
+void AAsylumProjectCharacter::HeadBob(float VectorLenght)
+{
+
+	if (VectorLenght > 0 )
+	{
+		Myplayercontroller->ClientStartCameraShake(CamShakeWalk);
+	}
+	else
+	{
+		Myplayercontroller->ClientStartCameraShake(CamShakeIdle);
 	}
 
 }

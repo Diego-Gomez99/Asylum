@@ -11,14 +11,24 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 // Cross Module References
 	ASYLUMPROJECT_API UClass* Z_Construct_UClass_AAsylumProjectCharacter();
 	ASYLUMPROJECT_API UClass* Z_Construct_UClass_AAsylumProjectCharacter_NoRegister();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	ENGINE_API UClass* Z_Construct_UClass_UAudioComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UCameraShakeBase_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputAction_NoRegister();
 	ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputMappingContext_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_AsylumProject();
 // End Cross Module References
+	DEFINE_FUNCTION(AAsylumProjectCharacter::execHeadBob)
+	{
+		P_GET_PROPERTY(FFloatProperty,Z_Param_VectorLenght);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->HeadBob(Z_Param_VectorLenght);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AAsylumProjectCharacter::execGetHasRifle)
 	{
 		P_FINISH;
@@ -39,6 +49,7 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 		UClass* Class = AAsylumProjectCharacter::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "GetHasRifle", &AAsylumProjectCharacter::execGetHasRifle },
+			{ "HeadBob", &AAsylumProjectCharacter::execHeadBob },
 			{ "SetHasRifle", &AAsylumProjectCharacter::execSetHasRifle },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -80,6 +91,38 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AAsylumProjectCharacter_GetHasRifle_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics
+	{
+		struct AsylumProjectCharacter_eventHeadBob_Parms
+		{
+			float VectorLenght;
+		};
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_VectorLenght;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics::NewProp_VectorLenght = { "VectorLenght", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AsylumProjectCharacter_eventHeadBob_Parms, VectorLenght), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics::NewProp_VectorLenght,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Player/AsylumProjectCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AAsylumProjectCharacter, nullptr, "HeadBob", nullptr, nullptr, sizeof(Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics::AsylumProjectCharacter_eventHeadBob_Parms), Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -177,6 +220,14 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_FootstepInterval_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_FootstepInterval;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_CamShakeIdle_MetaData[];
+#endif
+		static const UECodeGen_Private::FClassPropertyParams NewProp_CamShakeIdle;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_CamShakeWalk_MetaData[];
+#endif
+		static const UECodeGen_Private::FClassPropertyParams NewProp_CamShakeWalk;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -187,6 +238,7 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AAsylumProjectCharacter_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_AAsylumProjectCharacter_GetHasRifle, "GetHasRifle" }, // 469751888
+		{ &Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob, "HeadBob" }, // 480537107
 		{ &Z_Construct_UFunction_AAsylumProjectCharacter_SetHasRifle, "SetHasRifle" }, // 113382511
 	};
 #if WITH_METADATA
@@ -298,6 +350,20 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_FootstepInterval = { "FootstepInterval", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AAsylumProjectCharacter, FootstepInterval), METADATA_PARAMS(Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_FootstepInterval_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_FootstepInterval_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_CamShakeIdle_MetaData[] = {
+		{ "Category", "AsylumProjectCharacter" },
+		{ "ModuleRelativePath", "Player/AsylumProjectCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_CamShakeIdle = { "CamShakeIdle", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AAsylumProjectCharacter, CamShakeIdle), Z_Construct_UClass_UClass, Z_Construct_UClass_UCameraShakeBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_CamShakeIdle_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_CamShakeIdle_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_CamShakeWalk_MetaData[] = {
+		{ "Category", "AsylumProjectCharacter" },
+		{ "ModuleRelativePath", "Player/AsylumProjectCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_CamShakeWalk = { "CamShakeWalk", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AAsylumProjectCharacter, CamShakeWalk), Z_Construct_UClass_UClass, Z_Construct_UClass_UCameraShakeBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_CamShakeWalk_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_CamShakeWalk_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAsylumProjectCharacter_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_Mesh1P,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_FirstPersonCameraComponent,
@@ -309,6 +375,8 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_bHasRifle,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_HasKey,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_FootstepInterval,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_CamShakeIdle,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_CamShakeWalk,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AAsylumProjectCharacter_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AAsylumProjectCharacter>::IsAbstract,
@@ -342,15 +410,15 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AAsylumProjectCharacter);
 	AAsylumProjectCharacter::~AAsylumProjectCharacter() {}
-	struct Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics
+	struct Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AAsylumProjectCharacter, AAsylumProjectCharacter::StaticClass, TEXT("AAsylumProjectCharacter"), &Z_Registration_Info_UClass_AAsylumProjectCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAsylumProjectCharacter), 3028311500U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AAsylumProjectCharacter, AAsylumProjectCharacter::StaticClass, TEXT("AAsylumProjectCharacter"), &Z_Registration_Info_UClass_AAsylumProjectCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAsylumProjectCharacter), 3388107744U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_3762383130(TEXT("/Script/AsylumProject"),
-		Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_176640371(TEXT("/Script/AsylumProject"),
+		Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
