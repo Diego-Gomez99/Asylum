@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"D:\\Proyectos Unreal\\Asylum\\AsylumProject\\Source\\AsylumProject\\AsylumProject.Build.cs",
+		"D:\\Proyectos Unreal\\Asylum\\AsylumProject\\Source\\AsylumProject.Target.cs",
+		"D:\\Proyectos Unreal\\Asylum\\AsylumProject\\Source\\AsylumProjectEditor.Target.cs"
+	],
+	"EngineVersion": "5.2.1"
+}

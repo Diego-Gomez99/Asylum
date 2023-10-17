@@ -1,0 +1,35 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\proyectos unreal\\asylum\\asylumproject\\source\\asylumproject\\actors\\mykey.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\proyectos unreal\\asylum\\asylumproject\\intermediate\\build\\win64\\x64\\asylumprojecteditor\\development\\engine\\sharedpch.engine.shadowerrors.inclorderunreal5_1.h.pch",
+        "Includes": [
+            "d:\\proyectos unreal\\asylum\\asylumproject\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\asylumproject\\definitions.asylumproject.h",
+            "d:\\proyectos unreal\\asylum\\asylumproject\\source\\asylumproject\\actors\\mykey.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\components\\spherecomponent.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\spherecomponent.generated.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\components\\audiocomponent.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\engine\\public\\audio\\soundparametercontrollerinterface.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\soundparametercontrollerinterface.generated.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\audioextensions\\public\\iaudioparametertransmitter.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\audiomixer\\public\\quartz\\audiomixerquantizedcommands.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\audiomixer\\public\\quartz\\audiomixerclock.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\audiomixer\\public\\quartz\\quartzmetronome.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\engine\\classes\\sound\\quartzsubscription.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\core\\public\\containers\\depletablempmcqueue.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\audiomixer\\public\\quartz\\audiomixerclockhandle.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\audiomixer\\public\\quartz\\quartzsubsystem.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\audiomixer\\public\\quartz\\audiomixerclockmanager.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\audiomixer\\uht\\quartzsubsystem.generated.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\audiomixer\\uht\\audiomixerclockhandle.generated.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\audiocomponent.generated.h",
+            "d:\\unrealeditor\\ue_5.2\\engine\\source\\runtime\\core\\public\\misc\\outputdevicenull.h",
+            "d:\\proyectos unreal\\asylum\\asylumproject\\intermediate\\build\\win64\\unrealeditor\\inc\\asylumproject\\uht\\mykey.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
