@@ -46,6 +46,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	UAudioComponent* DoorLockedSound;
 
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* DoorFrameMesh;
+
 
 	UFUNCTION()
 	void BeginOverlap(UPrimitiveComponent* OverlappedComponent,

@@ -9,9 +9,11 @@ AMyDoor::AMyDoor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
+	DoorFrameMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorFrameMesh"));
+	DoorFrameMesh->SetupAttachment(RootComponent);
 
 	DoorMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorMesh"));
-	DoorMesh->SetupAttachment(RootComponent);
+	DoorMesh->SetupAttachment(DoorFrameMesh);
 
 	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
 	BoxCollider->SetupAttachment(DoorMesh);

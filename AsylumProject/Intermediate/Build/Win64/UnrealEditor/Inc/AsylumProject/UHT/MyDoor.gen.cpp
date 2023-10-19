@@ -227,6 +227,10 @@ void EmptyLinkFunctionForGeneratedCodeMyDoor() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_DoorLockedSound_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_DoorLockedSound;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DoorFrameMesh_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_DoorFrameMesh;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -287,12 +291,21 @@ void EmptyLinkFunctionForGeneratedCodeMyDoor() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyDoor_Statics::NewProp_DoorLockedSound = { "DoorLockedSound", nullptr, (EPropertyFlags)0x0040000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AMyDoor, DoorLockedSound), Z_Construct_UClass_UAudioComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AMyDoor_Statics::NewProp_DoorLockedSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMyDoor_Statics::NewProp_DoorLockedSound_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMyDoor_Statics::NewProp_DoorFrameMesh_MetaData[] = {
+		{ "Category", "MyDoor" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Actors/MyDoor.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyDoor_Statics::NewProp_DoorFrameMesh = { "DoorFrameMesh", nullptr, (EPropertyFlags)0x0040000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AMyDoor, DoorFrameMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AMyDoor_Statics::NewProp_DoorFrameMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMyDoor_Statics::NewProp_DoorFrameMesh_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMyDoor_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyDoor_Statics::NewProp_ClosedAngle,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyDoor_Statics::NewProp_OpenAngle,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyDoor_Statics::NewProp_DoorMesh,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyDoor_Statics::NewProp_BoxCollider,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyDoor_Statics::NewProp_DoorLockedSound,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyDoor_Statics::NewProp_DoorFrameMesh,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AMyDoor_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AMyDoor>::IsAbstract,
@@ -326,15 +339,15 @@ void EmptyLinkFunctionForGeneratedCodeMyDoor() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AMyDoor);
 	AMyDoor::~AMyDoor() {}
-	struct Z_CompiledInDeferFile_FID_Proyects_GitHub_UE_5_Asylum_AsylumProject_Source_AsylumProject_Actors_MyDoor_h_Statics
+	struct Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Actors_MyDoor_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyects_GitHub_UE_5_Asylum_AsylumProject_Source_AsylumProject_Actors_MyDoor_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AMyDoor, AMyDoor::StaticClass, TEXT("AMyDoor"), &Z_Registration_Info_UClass_AMyDoor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyDoor), 3488522725U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Actors_MyDoor_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AMyDoor, AMyDoor::StaticClass, TEXT("AMyDoor"), &Z_Registration_Info_UClass_AMyDoor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyDoor), 1343798939U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyects_GitHub_UE_5_Asylum_AsylumProject_Source_AsylumProject_Actors_MyDoor_h_2478356975(TEXT("/Script/AsylumProject"),
-		Z_CompiledInDeferFile_FID_Proyects_GitHub_UE_5_Asylum_AsylumProject_Source_AsylumProject_Actors_MyDoor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Proyects_GitHub_UE_5_Asylum_AsylumProject_Source_AsylumProject_Actors_MyDoor_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Actors_MyDoor_h_4044326855(TEXT("/Script/AsylumProject"),
+		Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Actors_MyDoor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Actors_MyDoor_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
