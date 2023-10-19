@@ -5,6 +5,8 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"C:/Users/hdean/OneDrive/Documentos/Unreal Projects/Asylum/AsylumProject/Content/ProtoLevel/AsylumLevel.umap",
+				"C:/Users/hdean/OneDrive/Documentos/Unreal Projects/Asylum/AsylumProject/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset",
 				"D:/UnrealEditor/UE_5.2/Engine/Content/EngineMaterials/WorldGridMaterial.uasset",
 				"D:/Proyectos Unreal/Asylum/Asylum/AsylumProject/Content/FirstPerson/HeadBob/Idle.uasset",
 				"D:/Proyectos Unreal/Asylum/Asylum/AsylumProject/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset",
