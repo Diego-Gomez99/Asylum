@@ -1,8 +1,0 @@
-{
-	"SourceFiles": [
-		"E:\\Proyects\\GitHub\\UE 5\\Asylum\\AsylumProject\\Source\\AsylumProject\\AsylumProject.Build.cs",
-		"E:\\Proyects\\GitHub\\UE 5\\Asylum\\AsylumProject\\Source\\AsylumProject.Target.cs",
-		"E:\\Proyects\\GitHub\\UE 5\\Asylum\\AsylumProject\\Source\\AsylumProjectEditor.Target.cs"
-	],
-	"EngineVersion": "5.2.1"
-}
