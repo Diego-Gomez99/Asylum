@@ -37,12 +37,6 @@ AAsylumProjectCharacter::AAsylumProjectCharacter()
 	//Creating Player tag
 	Tags.Add(TEXT("Player"));
 
-	//KeyRef
-	MyKeyRef = Cast<AMyKey>(UGameplayStatics::GetActorOfClass(GetWorld(), AMyKey::StaticClass()));
-
-	//DoorRef
-	MyDoorRef = Cast<AMyDoor>(UGameplayStatics::GetActorOfClass(GetWorld(), AMyDoor::StaticClass()));
-
 }
 
 
@@ -55,6 +49,8 @@ void AAsylumProjectCharacter::BeginPlay()
 	Myplayercontroller = Cast<APlayerController>(GetController());
 
 	KeysSoundComponent = FindComponentByClass<UAudioComponent>();
+
+	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &AAsylumProjectCharacter::BeginOverlap);
 
 	//Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
@@ -129,14 +125,15 @@ void AAsylumProjectCharacter::Look(const FInputActionValue& Value)
 
 void AAsylumProjectCharacter::PlayerInteraction()
 {
-	if (MyKeyRef->CanTakeKey)
+	
+	if (MyKeyRef && MyKeyRef->CanTakeKey)
 	{
 		HasKey = true;
 		KeysSoundComponent->Play();
 		MyKeyRef->KeyTaken();
 	}
 
-	if (MyDoorRef->CanIteractuateDoor)
+	if (MyDoorRef && MyDoorRef->CanIteractuateDoor)
 	{
 		if (HasKey)
 		{
@@ -160,6 +157,29 @@ void AAsylumProjectCharacter::HeadBob(float VectorLenght)
 	else
 	{
 		Myplayercontroller->ClientStartCameraShake(CamShakeIdle);
+	}
+
+}
+
+void AAsylumProjectCharacter::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, 
+	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+
+	if (OtherActor->ActorHasTag("Key"))
+	{
+		MyKeyRef = Cast<AMyKey>(OtherActor);
+	}
+
+	else if (OtherActor->ActorHasTag("Door"))
+	{
+		MyDoorRef = Cast<AMyDoor>(OtherActor);
+	}
+
+	else if (OtherActor->ActorHasTag("RemoveKey") || MyKeyRef == nullptr)
+	{
+		HasKey = false;
+		MyDoorRef->DoorMesh->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
+		OtherActor->Destroy();
 	}
 
 }

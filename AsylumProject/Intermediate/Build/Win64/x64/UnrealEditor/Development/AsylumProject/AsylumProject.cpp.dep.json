@@ -1,12 +1,12 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "e:\\proyects\\github\\ue 5\\asylum\\asylumproject\\source\\asylumproject\\asylumproject.cpp",
+        "Source": "d:\\proyectos unreal\\asylum\\asylum\\asylumproject\\source\\asylumproject\\asylumproject.cpp",
         "ProvidedModule": "",
-        "PCH": "e:\\proyects\\github\\ue 5\\asylum\\asylumproject\\intermediate\\build\\win64\\x64\\asylumprojecteditor\\development\\engine\\sharedpch.engine.shadowerrors.inclorderunreal5_1.h.pch",
+        "PCH": "d:\\proyectos unreal\\asylum\\asylum\\asylumproject\\intermediate\\build\\win64\\x64\\asylumprojecteditor\\development\\engine\\sharedpch.engine.shadowerrors.inclorderunreal5_1.h.pch",
         "Includes": [
-            "e:\\proyects\\github\\ue 5\\asylum\\asylumproject\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\asylumproject\\definitions.asylumproject.h",
-            "e:\\proyects\\github\\ue 5\\asylum\\asylumproject\\source\\asylumproject\\asylumproject.h"
+            "d:\\proyectos unreal\\asylum\\asylum\\asylumproject\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\asylumproject\\definitions.asylumproject.h",
+            "d:\\proyectos unreal\\asylum\\asylum\\asylumproject\\source\\asylumproject\\asylumproject.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

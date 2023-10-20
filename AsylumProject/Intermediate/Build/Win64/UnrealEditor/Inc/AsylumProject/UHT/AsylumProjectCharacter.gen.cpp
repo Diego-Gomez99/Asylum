@@ -6,21 +6,38 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "AsylumProject/Player/AsylumProjectCharacter.h"
+#include "../../Source/Runtime/Engine/Classes/Engine/HitResult.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 // Cross Module References
 	ASYLUMPROJECT_API UClass* Z_Construct_UClass_AAsylumProjectCharacter();
 	ASYLUMPROJECT_API UClass* Z_Construct_UClass_AAsylumProjectCharacter_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	ENGINE_API UClass* Z_Construct_UClass_UAudioComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraShakeBase_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
+	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputAction_NoRegister();
 	ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputMappingContext_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_AsylumProject();
 // End Cross Module References
+	DEFINE_FUNCTION(AAsylumProjectCharacter::execBeginOverlap)
+	{
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_OverlappedComponent);
+		P_GET_OBJECT(AActor,Z_Param_OtherActor);
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_OtherComp);
+		P_GET_PROPERTY(FIntProperty,Z_Param_OtherBodyIndex);
+		P_GET_UBOOL(Z_Param_bFromSweep);
+		P_GET_STRUCT_REF(FHitResult,Z_Param_Out_SweepResult);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->BeginOverlap(Z_Param_OverlappedComponent,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_OtherBodyIndex,Z_Param_bFromSweep,Z_Param_Out_SweepResult);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AAsylumProjectCharacter::execHeadBob)
 	{
 		P_GET_PROPERTY(FFloatProperty,Z_Param_VectorLenght);
@@ -48,11 +65,93 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 	{
 		UClass* Class = AAsylumProjectCharacter::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "BeginOverlap", &AAsylumProjectCharacter::execBeginOverlap },
 			{ "GetHasRifle", &AAsylumProjectCharacter::execGetHasRifle },
 			{ "HeadBob", &AAsylumProjectCharacter::execHeadBob },
 			{ "SetHasRifle", &AAsylumProjectCharacter::execSetHasRifle },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics
+	{
+		struct AsylumProjectCharacter_eventBeginOverlap_Parms
+		{
+			UPrimitiveComponent* OverlappedComponent;
+			AActor* OtherActor;
+			UPrimitiveComponent* OtherComp;
+			int32 OtherBodyIndex;
+			bool bFromSweep;
+			FHitResult SweepResult;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OverlappedComponent_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OverlappedComponent;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OtherActor;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OtherComp_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OtherComp;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_OtherBodyIndex;
+		static void NewProp_bFromSweep_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bFromSweep;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_SweepResult_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_SweepResult;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OverlappedComponent_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OverlappedComponent = { "OverlappedComponent", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AsylumProjectCharacter_eventBeginOverlap_Parms, OverlappedComponent), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OverlappedComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OverlappedComponent_MetaData)) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OtherActor = { "OtherActor", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AsylumProjectCharacter_eventBeginOverlap_Parms, OtherActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OtherComp_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OtherComp = { "OtherComp", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AsylumProjectCharacter_eventBeginOverlap_Parms, OtherComp), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OtherComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OtherComp_MetaData)) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OtherBodyIndex = { "OtherBodyIndex", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AsylumProjectCharacter_eventBeginOverlap_Parms, OtherBodyIndex), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_bFromSweep_SetBit(void* Obj)
+	{
+		((AsylumProjectCharacter_eventBeginOverlap_Parms*)Obj)->bFromSweep = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_bFromSweep = { "bFromSweep", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(AsylumProjectCharacter_eventBeginOverlap_Parms), &Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_bFromSweep_SetBit, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_SweepResult_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_SweepResult = { "SweepResult", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AsylumProjectCharacter_eventBeginOverlap_Parms, SweepResult), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_SweepResult_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_SweepResult_MetaData)) }; // 1287526515
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OverlappedComponent,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OtherActor,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OtherComp,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_OtherBodyIndex,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_bFromSweep,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::NewProp_SweepResult,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Player/AsylumProjectCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AAsylumProjectCharacter, nullptr, "BeginOverlap", nullptr, nullptr, sizeof(Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::AsylumProjectCharacter_eventBeginOverlap_Parms), Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00440401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_AAsylumProjectCharacter_GetHasRifle_Statics
 	{
@@ -237,6 +336,7 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_AsylumProject,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AAsylumProjectCharacter_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_AAsylumProjectCharacter_BeginOverlap, "BeginOverlap" }, // 1083952067
 		{ &Z_Construct_UFunction_AAsylumProjectCharacter_GetHasRifle, "GetHasRifle" }, // 469751888
 		{ &Z_Construct_UFunction_AAsylumProjectCharacter_HeadBob, "HeadBob" }, // 480537107
 		{ &Z_Construct_UFunction_AAsylumProjectCharacter_SetHasRifle, "SetHasRifle" }, // 113382511
@@ -342,7 +442,7 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 	{
 		((AAsylumProjectCharacter*)Obj)->HasKey = 1;
 	}
-	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_HasKey = { "HasKey", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(AAsylumProjectCharacter), &Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_HasKey_SetBit, METADATA_PARAMS(Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_HasKey_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_HasKey_MetaData)) };
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_HasKey = { "HasKey", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(AAsylumProjectCharacter), &Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_HasKey_SetBit, METADATA_PARAMS(Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_HasKey_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_HasKey_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAsylumProjectCharacter_Statics::NewProp_FootstepInterval_MetaData[] = {
 		{ "Category", "AsylumProjectCharacter" },
@@ -410,15 +510,15 @@ void EmptyLinkFunctionForGeneratedCodeAsylumProjectCharacter() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AAsylumProjectCharacter);
 	AAsylumProjectCharacter::~AAsylumProjectCharacter() {}
-	struct Z_CompiledInDeferFile_FID_Proyects_GitHub_UE_5_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics
+	struct Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyects_GitHub_UE_5_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AAsylumProjectCharacter, AAsylumProjectCharacter::StaticClass, TEXT("AAsylumProjectCharacter"), &Z_Registration_Info_UClass_AAsylumProjectCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAsylumProjectCharacter), 3388107744U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AAsylumProjectCharacter, AAsylumProjectCharacter::StaticClass, TEXT("AAsylumProjectCharacter"), &Z_Registration_Info_UClass_AAsylumProjectCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAsylumProjectCharacter), 3334328954U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyects_GitHub_UE_5_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_176640371(TEXT("/Script/AsylumProject"),
-		Z_CompiledInDeferFile_FID_Proyects_GitHub_UE_5_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Proyects_GitHub_UE_5_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_366957169(TEXT("/Script/AsylumProject"),
+		Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Proyectos_Unreal_Asylum_Asylum_AsylumProject_Source_AsylumProject_Player_AsylumProjectCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
