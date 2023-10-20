@@ -2,12 +2,12 @@
 	"Targets": [
 		{
 			"Name": "AsylumProject",
-			"Path": "D:\\Proyectos Unreal\\Asylum\\AsylumProject\\Source\\AsylumProject.Target.cs",
+			"Path": "E:\\Proyects\\GitHub\\UE 5\\Asylum\\AsylumProject\\Source\\AsylumProject.Target.cs",
 			"Type": "Game"
 		},
 		{
 			"Name": "AsylumProjectEditor",
-			"Path": "D:\\Proyectos Unreal\\Asylum\\AsylumProject\\Source\\AsylumProjectEditor.Target.cs",
+			"Path": "E:\\Proyects\\GitHub\\UE 5\\Asylum\\AsylumProject\\Source\\AsylumProjectEditor.Target.cs",
 			"Type": "Editor"
 		}
 	]
