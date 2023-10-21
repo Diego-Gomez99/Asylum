@@ -36,12 +36,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* DoorMesh;
 
+	/*Box Collider*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UBoxComponent* BoxCollider;
+
 private:
 
 
-	/*Box Collider*/
-	UPROPERTY(EditAnywhere)
-	UBoxComponent* BoxCollider;
 
 	UPROPERTY(EditAnywhere)
 	UAudioComponent* DoorLockedSound;

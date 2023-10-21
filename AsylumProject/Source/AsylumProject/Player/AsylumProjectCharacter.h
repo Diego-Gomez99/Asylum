@@ -7,11 +7,12 @@
 #include "InputActionValue.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/AudioComponent.h"
-#include "TimerManager.h"
+#include "Components/SpotLightComponent.h"
 #include "Misc/OutputDeviceNull.h"
 #include "AsylumProject/Actors/MyKey.h"
 #include "Misc/OutputDeviceNull.h"
 #include "AsylumProject/Actors/MyDoor.h"
+#include "AsylumProject/Actors/MyFlashLight.h"
 #include "AsylumProjectCharacter.generated.h"
 
 class UInputComponent;
@@ -51,6 +52,15 @@ class AAsylumProjectCharacter : public ACharacter
 
 	APlayerController* Myplayercontroller;
 
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* FlashlightMesh;
+
+	UPROPERTY(EditAnywhere)
+	USpotLightComponent* FlashLightSpotLight;
+
+	UPROPERTY(EditAnywhere)
+	UAudioComponent* FlashLightSound;
+
 	
 public:
 	AAsylumProjectCharacter();
@@ -85,6 +95,7 @@ protected:
 
 	void PlayerInteraction();
 
+	void FlashLightInput();
 
 protected:
 	// APawn interface
@@ -109,6 +120,9 @@ private:
 
 	FOutputDeviceNull ar;
 
+
+	bool HasFlashLight = false;
+
 	bool bHasExecuted = false;
 
 	/*Key Item*/
@@ -118,6 +132,7 @@ private:
 	AMyDoor* MyDoorRef;
 
 
+	AMyFlashLight* FlashLightRef;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCameraShakeBase> CamShakeIdle;	

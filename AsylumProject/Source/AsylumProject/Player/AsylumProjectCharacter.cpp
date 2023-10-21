@@ -34,9 +34,19 @@ AAsylumProjectCharacter::AAsylumProjectCharacter()
 	//Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
+	//FlashLightMesh
+	FlashlightMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("FlashLightMesh"));
+	FlashlightMesh->SetupAttachment(FirstPersonCameraComponent);
+
+	//FlashLightSpotLight
+	FlashLightSpotLight = CreateDefaultSubobject<USpotLightComponent>(TEXT("Light"));
+	FlashLightSpotLight->SetupAttachment(FlashlightMesh);
+
 	//Creating Player tag
 	Tags.Add(TEXT("Player"));
 
+	FlashLightSound = CreateDefaultSubobject<UAudioComponent>(TEXT("FlashLightSound"));
+	FlashLightSound->SetupAttachment(FlashlightMesh);
 }
 
 
@@ -49,6 +59,8 @@ void AAsylumProjectCharacter::BeginPlay()
 	Myplayercontroller = Cast<APlayerController>(GetController());
 
 	KeysSoundComponent = FindComponentByClass<UAudioComponent>();
+
+	FlashLightRef = Cast<AMyFlashLight>(UGameplayStatics::GetActorOfClass(GetWorld(), AMyFlashLight::StaticClass()));
 
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &AAsylumProjectCharacter::BeginOverlap);
 
@@ -64,6 +76,7 @@ void AAsylumProjectCharacter::BeginPlay()
 }
 
 //////////////////////////////////////////////////////////////////////////// Input
+
 
 void AAsylumProjectCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
@@ -82,6 +95,7 @@ void AAsylumProjectCharacter::SetupPlayerInputComponent(class UInputComponent* P
 	}
 
 	InputComponent->BindAction(TEXT("InteractionAction"), IE_Pressed, this, &AAsylumProjectCharacter::PlayerInteraction);
+	InputComponent->BindAction(TEXT("FlashLight"), IE_Pressed, this, &AAsylumProjectCharacter::FlashLightInput);
 }
 
 void AAsylumProjectCharacter::Move(const FInputActionValue& Value)
@@ -145,8 +159,33 @@ void AAsylumProjectCharacter::PlayerInteraction()
 		}
 	}
 
+	//Taking Flashlight
+	if (FlashLightRef->CanTakeFlashLight && FlashLightRef)
+	{
+		HasFlashLight = true;
+		FlashlightMesh->SetVisibility(true);
+		FlashLightRef->Destroy();
+	}
+
 }
 
+void AAsylumProjectCharacter::FlashLightInput()
+{
+	if (HasFlashLight)
+	{
+		FlashLightSound->Play();
+
+		if (FlashLightSpotLight->IsVisible())
+		{
+			FlashLightSpotLight->SetVisibility(false);
+		}
+		else
+		{
+			FlashLightSpotLight->SetVisibility(true);
+		}
+	}
+
+}
 void AAsylumProjectCharacter::HeadBob(float VectorLenght)
 {
 
@@ -175,13 +214,13 @@ void AAsylumProjectCharacter::BeginOverlap(UPrimitiveComponent* OverlappedCompon
 		MyDoorRef = Cast<AMyDoor>(OtherActor);
 	}
 
-	else if (OtherActor->ActorHasTag("RemoveKey") || MyKeyRef == nullptr)
+	else if (OtherActor->ActorHasTag("RemoveKey") && MyDoorRef)
 	{
 		HasKey = false;
 		MyDoorRef->DoorMesh->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
 		OtherActor->Destroy();
 	}
-
+	
 }
 
 void AAsylumProjectCharacter::SetHasRifle(bool bNewHasRifle)
