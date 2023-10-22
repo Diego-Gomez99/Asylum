@@ -47,6 +47,10 @@ AAsylumProjectCharacter::AAsylumProjectCharacter()
 
 	FlashLightSound = CreateDefaultSubobject<UAudioComponent>(TEXT("FlashLightSound"));
 	FlashLightSound->SetupAttachment(FlashlightMesh);
+
+	PickupFlashLight = CreateDefaultSubobject<UAudioComponent>(TEXT("PickUpFlashLight"));
+	PickupFlashLight->SetupAttachment(FlashlightMesh);
+
 }
 
 
@@ -163,6 +167,7 @@ void AAsylumProjectCharacter::PlayerInteraction()
 	if (FlashLightRef->CanTakeFlashLight && FlashLightRef)
 	{
 		HasFlashLight = true;
+		PickupFlashLight->Play();
 		FlashlightMesh->SetVisibility(true);
 		FlashLightRef->Destroy();
 	}

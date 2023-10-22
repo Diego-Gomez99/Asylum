@@ -61,6 +61,9 @@ class AAsylumProjectCharacter : public ACharacter
 	UPROPERTY(EditAnywhere)
 	UAudioComponent* FlashLightSound;
 
+	UPROPERTY(EditDefaultsOnly)
+	UAudioComponent* PickupFlashLight;
+
 	
 public:
 	AAsylumProjectCharacter();
