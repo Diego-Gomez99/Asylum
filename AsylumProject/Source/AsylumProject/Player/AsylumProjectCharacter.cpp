@@ -144,14 +144,15 @@ void AAsylumProjectCharacter::Look(const FInputActionValue& Value)
 void AAsylumProjectCharacter::PlayerInteraction()
 {
 	
-	if (MyKeyRef && MyKeyRef->CanTakeKey)
+	if (MyKeyRef != nullptr && MyKeyRef->CanTakeKey)
 	{
 		HasKey = true;
 		KeysSoundComponent->Play();
 		MyKeyRef->KeyTaken();
+		MyKeyRef = nullptr;
 	}
 
-	if (MyDoorRef && MyDoorRef->CanIteractuateDoor)
+	if (MyDoorRef != nullptr && MyDoorRef->CanIteractuateDoor)
 	{
 		if (HasKey)
 		{
@@ -164,12 +165,13 @@ void AAsylumProjectCharacter::PlayerInteraction()
 	}
 
 	//Taking Flashlight
-	if (FlashLightRef->CanTakeFlashLight && FlashLightRef)
+	if (FlashLightRef != nullptr && FlashLightRef->CanTakeFlashLight)
 	{
 		HasFlashLight = true;
 		PickupFlashLight->Play();
 		FlashlightMesh->SetVisibility(true);
 		FlashLightRef->Destroy();
+		FlashLightRef = nullptr;
 	}
 
 }

@@ -128,7 +128,10 @@ private:
 
 	bool bHasExecuted = false;
 
+
+public:
 	/*Key Item*/
+	UPROPERTY(BlueprintReadWrite)
 	AMyKey* MyKeyRef;
 
 	/*Door Class*/
