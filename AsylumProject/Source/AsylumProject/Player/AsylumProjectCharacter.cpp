@@ -175,11 +175,13 @@ void AAsylumProjectCharacter::PlayerInteraction()
 		FlashLightRef->Destroy();
 		FlashLightRef = nullptr;
 	}
+	this->CallFunctionByNameWithArguments(TEXT("ShowFlashLightInfo"), ar, NULL, true);
 
 }
 
 void AAsylumProjectCharacter::FlashLightInput()
 {
+
 	if (HasFlashLight)
 	{
 		FlashLightSound->Play();
@@ -191,8 +193,15 @@ void AAsylumProjectCharacter::FlashLightInput()
 		else
 		{
 			FlashLightSpotLight->SetVisibility(true);
+			this->CallFunctionByNameWithArguments(TEXT("RemoveFlashLightInfo"), ar, NULL, true);
 		}
 	}
+	this->CallFunctionByNameWithArguments(TEXT("ShowFlashLightInfo"), ar, NULL, true);
+}
+void AAsylumProjectCharacter::ShowFlashLightInfo()
+{
+	
+
 
 }
 void AAsylumProjectCharacter::HeadBob(float VectorLenght)

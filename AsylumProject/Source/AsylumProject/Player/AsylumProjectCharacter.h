@@ -56,8 +56,6 @@ class AAsylumProjectCharacter : public ACharacter
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* FlashlightMesh;
 
-	UPROPERTY(EditAnywhere)
-	USpotLightComponent* FlashLightSpotLight;
 
 	UPROPERTY(EditAnywhere)
 	UAudioComponent* FlashLightSound;
@@ -68,6 +66,9 @@ class AAsylumProjectCharacter : public ACharacter
 	
 public:
 	AAsylumProjectCharacter();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USpotLightComponent* FlashLightSpotLight;
 
 protected:
 	virtual void BeginPlay();
@@ -101,6 +102,8 @@ protected:
 
 	void FlashLightInput();
 
+	void ShowFlashLightInfo();
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
@@ -120,12 +123,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float FootstepInterval;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool HasFlashLight = false;
 private:
 
 	FOutputDeviceNull ar;
 
-
-	bool HasFlashLight = false;
 
 	bool bHasExecuted = false;
 
