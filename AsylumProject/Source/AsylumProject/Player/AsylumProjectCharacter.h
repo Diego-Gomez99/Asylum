@@ -102,8 +102,6 @@ protected:
 
 	void FlashLightInput();
 
-	void ShowFlashLightInfo();
-
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;

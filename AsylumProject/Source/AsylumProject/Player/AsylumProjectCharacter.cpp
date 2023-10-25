@@ -174,8 +174,8 @@ void AAsylumProjectCharacter::PlayerInteraction()
 		FlashlightMesh->SetVisibility(true);
 		FlashLightRef->Destroy();
 		FlashLightRef = nullptr;
+		this->CallFunctionByNameWithArguments(TEXT("ShowFlashLightInfo"), ar, NULL, true);
 	}
-	this->CallFunctionByNameWithArguments(TEXT("ShowFlashLightInfo"), ar, NULL, true);
 
 }
 
@@ -196,14 +196,9 @@ void AAsylumProjectCharacter::FlashLightInput()
 			this->CallFunctionByNameWithArguments(TEXT("RemoveFlashLightInfo"), ar, NULL, true);
 		}
 	}
-	this->CallFunctionByNameWithArguments(TEXT("ShowFlashLightInfo"), ar, NULL, true);
+	//this->CallFunctionByNameWithArguments(TEXT("ShowFlashLightInfo"), ar, NULL, true);
 }
-void AAsylumProjectCharacter::ShowFlashLightInfo()
-{
-	
 
-
-}
 void AAsylumProjectCharacter::HeadBob(float VectorLenght)
 {
 
