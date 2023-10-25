@@ -9,6 +9,7 @@
 #include "Components/AudioComponent.h"
 #include "Components/SpotLightComponent.h"
 #include "Misc/OutputDeviceNull.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "AsylumProject/Actors/MyKey.h"
 #include "Misc/OutputDeviceNull.h"
 #include "AsylumProject/Actors/MyDoor.h"
@@ -128,17 +129,14 @@ private:
 
 	bool bHasExecuted = false;
 
-
-public:
-	/*Key Item*/
-	UPROPERTY(BlueprintReadWrite)
 	AMyKey* MyKeyRef;
 
 	/*Door Class*/
 	AMyDoor* MyDoorRef;
 
-
 	AMyFlashLight* FlashLightRef;
+
+	UCharacterMovementComponent* Movement;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCameraShakeBase> CamShakeIdle;	

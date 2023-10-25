@@ -51,6 +51,8 @@ AAsylumProjectCharacter::AAsylumProjectCharacter()
 	PickupFlashLight = CreateDefaultSubobject<UAudioComponent>(TEXT("PickUpFlashLight"));
 	PickupFlashLight->SetupAttachment(FlashlightMesh);
 
+	Movement = GetCharacterMovement();
+
 }
 
 
@@ -226,6 +228,12 @@ void AAsylumProjectCharacter::BeginOverlap(UPrimitiveComponent* OverlappedCompon
 		HasKey = false;
 		MyDoorRef->DoorMesh->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
 		OtherActor->Destroy();
+	}
+	else if (OtherActor->ActorHasTag("EndGame") && MyDoorRef != nullptr)
+	{
+		Movement->MaxWalkSpeed = 0;
+		MyDoorRef->DoorMesh->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
+		
 	}
 	
 }
