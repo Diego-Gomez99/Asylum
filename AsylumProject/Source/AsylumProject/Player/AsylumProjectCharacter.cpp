@@ -4,6 +4,9 @@
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "Math/UnrealMathUtility.h"
+#include "Engine/World.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 
@@ -18,13 +21,16 @@ AAsylumProjectCharacter::AAsylumProjectCharacter()
 
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
+	
+	// Set Character Skeletal Mesh
+	CharacterMesh = GetMesh();
 
 	// Create a CameraComponent	
 	FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
-	FirstPersonCameraComponent->SetupAttachment(GetCapsuleComponent());
+	FirstPersonCameraComponent->SetupAttachment(CharacterMesh);
 	FirstPersonCameraComponent->SetRelativeLocation(FVector(-10.f, 0.f, 60.f)); // Position the camera
 	FirstPersonCameraComponent->bUsePawnControlRotation = true;
-
+	
 	// Create a mesh component that will be used when being viewed from a '1st person' view (when controlling this pawn)
 	Mesh1P = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("CharacterMesh1P"));
 	Mesh1P->SetOnlyOwnerSee(true);
@@ -34,6 +40,7 @@ AAsylumProjectCharacter::AAsylumProjectCharacter()
 	//Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
+
 	//FlashLightMesh
 	FlashlightMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("FlashLightMesh"));
 	FlashlightMesh->SetupAttachment(FirstPersonCameraComponent);
@@ -41,6 +48,7 @@ AAsylumProjectCharacter::AAsylumProjectCharacter()
 	//FlashLightSpotLight
 	FlashLightSpotLight = CreateDefaultSubobject<USpotLightComponent>(TEXT("Light"));
 	FlashLightSpotLight->SetupAttachment(FlashlightMesh);
+
 
 	//Creating Player tag
 	Tags.Add(TEXT("Player"));
@@ -64,8 +72,6 @@ void AAsylumProjectCharacter::BeginPlay()
 
 	Myplayercontroller = Cast<APlayerController>(GetController());
 
-	KeysSoundComponent = FindComponentByClass<UAudioComponent>();
-
 	FlashLightRef = Cast<AMyFlashLight>(UGameplayStatics::GetActorOfClass(GetWorld(), AMyFlashLight::StaticClass()));
 
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &AAsylumProjectCharacter::BeginOverlap);
@@ -78,6 +84,12 @@ void AAsylumProjectCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+
+	FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, false);
+
+	FName SocketName = "HeadSocket";  // Set the socket name
+
+	FirstPersonCameraComponent->AttachToComponent(CharacterMesh, AttachmentRules, SocketName);  // Attacht camera component to head
 
 }
 
@@ -115,17 +127,7 @@ void AAsylumProjectCharacter::Move(const FInputActionValue& Value)
 		// add movement 
 		AddMovementInput(GetActorForwardVector(), MovementVector.Y);
 		AddMovementInput(GetActorRightVector(), MovementVector.X);
-
-		if (GetVelocity().X > 2.0 || GetVelocity().X < -2.0 || GetVelocity().Y > 2.0 || GetVelocity().Y < -2.0)
-		{
-			this->CallFunctionByNameWithArguments(TEXT("WalkingEvent true"), ar, NULL, true);
-		}
-		else
-		{
-			this->CallFunctionByNameWithArguments(TEXT("WalkingEvent false"), ar, NULL, true);
-		}
 		HeadBob(GetVelocity().Size());
-		
 	} 
 	
 }
@@ -134,6 +136,9 @@ void AAsylumProjectCharacter::Look(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
+
+	LookAxisVector.X = LookAxisVector.X * MouseSensitivityValue;
+	LookAxisVector.Y = LookAxisVector.Y * MouseSensitivityValue;
 
 	if (Controller != nullptr)
 	{
@@ -145,25 +150,22 @@ void AAsylumProjectCharacter::Look(const FInputActionValue& Value)
 
 void AAsylumProjectCharacter::PlayerInteraction()
 {
-	
+	// Pick Up Item	
 	if (MyKeyRef != nullptr && MyKeyRef->CanTakeKey)
 	{
-		HasKey = true;
-		KeysSoundComponent->Play();
-		MyKeyRef->KeyTaken();
-		MyKeyRef = nullptr;
+		PlayMontage(PickUp);
 	}
-
+	//Interact with door
 	if (MyDoorRef != nullptr && MyDoorRef->CanIteractuateDoor)
 	{
-		if (HasKey)
-		{
-			MyDoorRef->CallFunctionByNameWithArguments(TEXT("ChangeDoorIcon true"), ar, NULL, true);
-		}
-		else
-		{	
-			MyDoorRef->CallFunctionByNameWithArguments(TEXT("ChangeDoorIcon false"), ar, NULL, true);
-		}
+		ArrowComponent = MyDoorRef->ArrowComponentLocation;
+
+		FRotator NewPlayerRotation = MyDoorRef->ArrowLocation(ArrowComponent).Rotator();
+		FVector NewPlayerLocation = MyDoorRef->ArrowLocation(ArrowComponent).GetLocation();
+
+		Myplayercontroller->SetControlRotation(NewPlayerRotation);
+		SetActorLocation(NewPlayerLocation);
+		DoorAnimInteraction(ArrowComponent);
 	}
 
 	//Taking Flashlight
@@ -237,11 +239,74 @@ void AAsylumProjectCharacter::BeginOverlap(UPrimitiveComponent* OverlappedCompon
 	{
 		Movement->MaxWalkSpeed = 0;
 		MyDoorRef->DoorMesh->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
-		
 	}
 	
 }
 
+void AAsylumProjectCharacter::DeleteKey()
+{
+	HasKey = true;
+	MyKeyRef->KeyTaken();
+	MyKeyRef = nullptr;
+}
+
+void AAsylumProjectCharacter::OpenDoor()
+{
+   MyDoorRef->CallFunctionByNameWithArguments(TEXT("ChangeDoorIcon true"), ar, NULL, true);
+}
+
+void AAsylumProjectCharacter::PlayMontage(UAnimMontage* MontageToPlay)
+{
+	if (MontageToPlay)
+	{
+		CharacterMesh->GetAnimInstance()->Montage_Play(MontageToPlay);
+	}
+}
+
+void AAsylumProjectCharacter::DoorAnimInteraction(UArrowComponent* ArrowSelected)
+{
+	if (ArrowSelected->GetName() == "ArrowComponentRight") // If the player is on the right side of the door
+	{
+		if (HasKey)
+		{
+			if (MyDoorRef->IsDoorAlreadyOpen)
+			{
+				PlayMontage(R_CloseSingleDoor);  //Animation to close the door once this it's already opened
+			}
+			else
+			{	
+				PlayMontage(R_OpenSingleDoor);  //Open the door
+			}
+		}
+		else
+		{
+			PlayMontage(R_DoorClosed); // Animation to locked door
+			MyDoorRef->CallFunctionByNameWithArguments(TEXT("ChangeDoorIcon false"), ar, NULL, true);
+		}
+	}
+	/*If the player is on the left side of the door*/
+	else
+	{
+		if (HasKey)
+		{
+			if (MyDoorRef->IsDoorAlreadyOpen)
+			{
+				PlayMontage(L_CloseSingleDoor);  //Animation to close the door once this it's already opened
+			}
+			else
+			{	
+				PlayMontage(L_OpenSingleDoor);  //Open the door
+			}
+		}
+		else
+		{
+			PlayMontage(L_DoorClosed); // Animation to close the door
+			MyDoorRef->CallFunctionByNameWithArguments(TEXT("ChangeDoorIcon false"), ar, NULL, true);
+		}
+	}
+}
+
+/*Rifle Settings*/
 void AAsylumProjectCharacter::SetHasRifle(bool bNewHasRifle)
 {
 	bHasRifle = bNewHasRifle;

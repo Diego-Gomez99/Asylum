@@ -15,11 +15,17 @@ AMyDoor::AMyDoor()
 	DoorMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorMesh"));
 	DoorMesh->SetupAttachment(DoorFrameMesh);
 
-	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
-	BoxCollider->SetupAttachment(DoorMesh);
+	BoxColliderRight = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxColliderRight"));
+	BoxColliderRight->SetupAttachment(DoorFrameMesh);
 
-	DoorLockedSound = CreateDefaultSubobject<UAudioComponent>(TEXT("DoorLockedSound"));
-	DoorLockedSound->SetupAttachment(DoorMesh);
+	BoxColliderLeft = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxColliderLeft"));
+	BoxColliderLeft->SetupAttachment(DoorFrameMesh);
+
+	ArrowRight = CreateDefaultSubobject<UArrowComponent>(TEXT("ArrowComponentRight"));
+	ArrowRight->SetupAttachment(DoorFrameMesh);
+
+	ArrowLeft = CreateDefaultSubobject<UArrowComponent>(TEXT("ArrowComponentLeft"));
+	ArrowLeft->SetupAttachment(DoorFrameMesh);
 
 }
 
@@ -28,12 +34,16 @@ void AMyDoor::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	BoxCollider->OnComponentBeginOverlap.AddDynamic(this, &AMyDoor::BeginOverlap);
-	BoxCollider->OnComponentEndOverlap.AddDynamic(this, &AMyDoor::OnOverlapEnd);
+	BoxColliderRight->OnComponentBeginOverlap.AddDynamic(this, &AMyDoor::BeginOverlapRightCollider);
+	BoxColliderRight->OnComponentEndOverlap.AddDynamic(this, &AMyDoor::OnOverlapEndRightCollider);
 
+	BoxColliderLeft->OnComponentBeginOverlap.AddDynamic(this, &AMyDoor::BeginOverlapLeftCollider);
+	BoxColliderLeft->OnComponentEndOverlap.AddDynamic(this, &AMyDoor::OnOverlapEndLeftCollider);
+	
 }
 
-void AMyDoor::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+/*Right Colliders Functions*/
+void AMyDoor::BeginOverlapRightCollider(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor->ActorHasTag("Player"))
@@ -41,12 +51,13 @@ void AMyDoor::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 		FOutputDeviceNull ar;
 		this->CallFunctionByNameWithArguments(TEXT("WidgetDoorVisibility true"), ar, NULL, true);
 		CanIteractuateDoor = true;
+		ArrowComponentLocation = ArrowRight;
 	}
 
 
 }
 
-void AMyDoor::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void AMyDoor::OnOverlapEndRightCollider(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	if (OtherActor->ActorHasTag("Player"))
 	{
@@ -56,4 +67,33 @@ void AMyDoor::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherAct
 	}
 }
 
+/*Left Colliders Functions*/
+void AMyDoor::BeginOverlapLeftCollider(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (OtherActor->ActorHasTag("Player"))
+	{
+		FOutputDeviceNull ar;
+		this->CallFunctionByNameWithArguments(TEXT("WidgetDoorVisibility true"), ar, NULL, true);
+		CanIteractuateDoor = true;
+		ArrowComponentLocation = ArrowLeft;
+	}
+
+
+}
+
+void AMyDoor::OnOverlapEndLeftCollider(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	if (OtherActor->ActorHasTag("Player"))
+	{
+		FOutputDeviceNull ar;
+		this->CallFunctionByNameWithArguments(TEXT("WidgetDoorVisibility false"), ar, NULL, true);
+		CanIteractuateDoor = false;
+	}
+}
+
+FTransform AMyDoor::ArrowLocation(UArrowComponent* ArrowComponent)
+{
+	return ArrowComponent->GetComponentTransform();
+}
 

@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Components/BoxComponent.h"
 #include "Components/AudioComponent.h"
+#include "Components/ArrowComponent.h"
 #include "Misc/OutputDeviceNull.h"
 #include "MyDoor.generated.h"
 
@@ -38,21 +39,35 @@ public:
 
 	/*Box Collider*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UBoxComponent* BoxCollider;
+	UBoxComponent* BoxColliderRight;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UBoxComponent* BoxColliderLeft;
+
+	/*Verify if the door is opened/closed*/
+	UPROPERTY(BlueprintReadWrite)
+	bool IsDoorAlreadyOpen;
+
+	UArrowComponent* ArrowComponentLocation;
+
+
+	FTransform ArrowLocation(UArrowComponent* ArrowComponent);
 private:
 
+	UPROPERTY(EditAnywhere)
+	UArrowComponent* ArrowRight;
 
 
 	UPROPERTY(EditAnywhere)
-	UAudioComponent* DoorLockedSound;
+	UArrowComponent* ArrowLeft;
+
 
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* DoorFrameMesh;
 
-
+	//**Right Collider**//
 	UFUNCTION()
-	void BeginOverlap(UPrimitiveComponent* OverlappedComponent,
+	void BeginOverlapRightCollider(UPrimitiveComponent* OverlappedComponent,
 		AActor* OtherActor,
 		UPrimitiveComponent* OtherComp,
 		int32 OtherBodyIndex,
@@ -60,9 +75,22 @@ private:
 		const FHitResult& SweepResult);
 
 	UFUNCTION()
-	void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+	void OnOverlapEndRightCollider(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	
+	//**Left Collider**//
 
+	UFUNCTION()
+	void BeginOverlapLeftCollider(UPrimitiveComponent* OverlappedComponent,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void OnOverlapEndLeftCollider(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 
 };

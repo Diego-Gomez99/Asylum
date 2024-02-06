@@ -7,6 +7,7 @@
 #include "InputActionValue.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/AudioComponent.h"
+#include "Components/ArrowComponent.h"
 #include "Components/SpotLightComponent.h"
 #include "Misc/OutputDeviceNull.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -29,9 +30,14 @@ class AAsylumProjectCharacter : public ACharacter
 	GENERATED_BODY()
 
 	/** Pawn mesh: 1st person view (arms; seen only by self) */
-	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 	USkeletalMeshComponent* Mesh1P;
 
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USkeletalMeshComponent* CharacterMesh;
+
+private:
 	/** First person camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FirstPersonCameraComponent;
@@ -48,9 +54,6 @@ class AAsylumProjectCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	class UInputAction* MoveAction;
 
-	UPROPERTY(EditAnywhere)
-	UAudioComponent* KeysSoundComponent;
-
 	APlayerController* Myplayercontroller;
 
 	UPROPERTY(EditAnywhere)
@@ -62,7 +65,6 @@ class AAsylumProjectCharacter : public ACharacter
 
 	UPROPERTY(EditDefaultsOnly)
 	UAudioComponent* PickupFlashLight;
-
 	
 public:
 	AAsylumProjectCharacter();
@@ -113,6 +115,9 @@ public:
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
+	UPROPERTY(BlueprintReadWrite)
+	float MouseSensitivityValue = 1.0f;
+	
 	UFUNCTION(BlueprintCallable)
 	void HeadBob(float VectorLenght);
 
@@ -124,17 +129,21 @@ public:
 
 	UPROPERTY(BlueprintReadWrite)
 	bool HasFlashLight = false;
+
+
 private:
 
 	FOutputDeviceNull ar;
 
-
 	bool bHasExecuted = false;
 
-	AMyKey* MyKeyRef;
+	UArrowComponent* ArrowComponent;   //Get the red Arrows components location from MyDoor class
 
 	/*Door Class*/
 	AMyDoor* MyDoorRef;
+
+	/*Key Class*/
+	AMyKey* MyKeyRef;
 
 	AMyFlashLight* FlashLightRef;
 
@@ -145,6 +154,34 @@ private:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UCameraShakeBase> CamShakeWalk;
 
+
+	/*////////- Animations - //////////*/
+	
+	/*----- Pick Up an Object ------*/
+	UPROPERTY(EditAnywhere, Category="Animation")
+	UAnimMontage* PickUp;
+
+	/*----- Right Side Of the Door -----*/
+	UPROPERTY(EditAnywhere, Category="Door Animation")
+	UAnimMontage* R_DoorClosed;
+
+	UPROPERTY(EditAnywhere, Category = "Door Animation")
+	UAnimMontage* R_OpenSingleDoor;
+
+	UPROPERTY(EditAnywhere, Category = "Door Animation")
+	UAnimMontage* R_CloseSingleDoor;
+
+	/*---- Left Side Of the Door ----*/
+	UPROPERTY(EditAnywhere, Category="Door Animation")
+	UAnimMontage* L_DoorClosed;
+
+	UPROPERTY(EditAnywhere, Category = "Door Animation")
+	UAnimMontage* L_OpenSingleDoor;
+
+	UPROPERTY(EditAnywhere, Category = "Door Animation")
+	UAnimMontage* L_CloseSingleDoor;
+
+
 UFUNCTION()
 void BeginOverlap(UPrimitiveComponent* OverlappedComponent,
 		AActor* OtherActor,
@@ -152,5 +189,17 @@ void BeginOverlap(UPrimitiveComponent* OverlappedComponent,
 		int32 OtherBodyIndex,
 		bool bFromSweep,
 		const FHitResult& SweepResult);
+
+UFUNCTION(BlueprintCallable)
+void DeleteKey();
+
+UFUNCTION(BlueprintCallable)
+void OpenDoor();
+
+
+void PlayMontage(UAnimMontage* MontageToPlay);
+
+/*Function to select the animation to door interaction */
+void DoorAnimInteraction(UArrowComponent* ArrowSelected);
 };
 
